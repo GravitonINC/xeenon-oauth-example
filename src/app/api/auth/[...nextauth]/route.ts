@@ -9,7 +9,7 @@ const handler = NextAuth({
       authorization: {
         url: 'http://localhost:3000/oauth2/authorize',
         params: {
-          scope: 'openid profile email',
+          scope: 'general chat:read chat:write follow:write reactions:write',
           code_challenge_method: 'S256',
         },
       },
