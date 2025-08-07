@@ -4,6 +4,7 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 
 export default function AuthDemo() {
   const { data: session, status } = useSession();
+  const isAuthenticated = status === 'authenticated' && Boolean(session);
 
   return (
     <div className="flex flex-col gap-4 border rounded-lg p-4 max-w-[480px] w-full">
@@ -32,18 +33,21 @@ export default function AuthDemo() {
       </div>
 
       <div className="flex gap-2">
-        <button
-          className="px-3 py-2 rounded-md bg-black text-white dark:bg-white dark:text-black text-sm"
-          onClick={() => signIn('xeenon')}
-        >
-          Sign in with Xeenon
-        </button>
-        <button
-          className="px-3 py-2 rounded-md border text-sm"
-          onClick={() => signOut()}
-        >
-          Sign out
-        </button>
+        {isAuthenticated ? (
+          <button
+            className="px-3 py-2 rounded-md border text-sm"
+            onClick={() => signOut()}
+          >
+            Sign out
+          </button>
+        ) : (
+          <button
+            className="px-3 py-2 rounded-md bg-black text-white dark:bg-white dark:text-black text-sm"
+            onClick={() => signIn('xeenon')}
+          >
+            Sign in with Xeenon
+          </button>
+        )}
       </div>
     </div>
   );
