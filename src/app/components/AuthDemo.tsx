@@ -108,6 +108,26 @@ export default function AuthDemo() {
           </button>
         </div>
       )}
+      <div className="pt-2 mt-2 border-t text-xs text-gray-600">
+        <span className="font-medium">Resources:</span>{' '}
+        <a
+          href="https://github.com/GravitonINC/xeenon-oauth-example"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline"
+        >
+          GitHub source
+        </a>
+        {' · '}
+        <a
+          href="https://main.public-api.xeenon.xyz/swagger"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline"
+        >
+          Xeenon Public API docs
+        </a>
+      </div>
     </div>
   );
 }
