@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "NEXTAUTH_URL=http://localhost:8080 next dev -p 8080 --turbopack",
+    "dev": "next dev -p 8080 --turbopack",
     "build": "next build",
-    "start": "NEXTAUTH_URL=http://localhost:8080 next start -p 8080",
+    "start": "next start -p 8080",
     "lint": "next lint"
   },
   "dependencies": {
