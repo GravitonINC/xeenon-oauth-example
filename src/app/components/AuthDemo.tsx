@@ -21,9 +21,9 @@ export default function AuthDemo() {
                 <span className="font-medium">Name:</span> {session.user.name}
               </div>
             )}
-            {session.user?.email && (
+            {session.user?.image && (
               <div>
-                <span className="font-medium">Email:</span> {session.user.email}
+                <img src={session.user.image} alt="Profile" className="w-10 h-10 rounded-full" />
               </div>
             )}
           </div>
