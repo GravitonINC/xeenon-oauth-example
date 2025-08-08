@@ -13,7 +13,7 @@ export default function AuthDemo() {
 
   return (
     <div className="flex flex-col gap-4 border rounded-lg p-4 max-w-[480px] w-full">
-      <h2 className="text-lg font-semibold">OAuth Demo</h2>
+      <h2 className="text-lg font-semibold">Xeenon OAuth Demo</h2>
 
       <div className="text-sm">
         <div>
