@@ -93,6 +93,19 @@ export default function AuthDemo() {
           >
             Refresh session now
           </button>
+          <button
+            className="px-3 py-2 rounded-md border text-sm"
+            onClick={async () => {
+              const res = await fetch('/api/token/revoke', { method: 'POST' });
+              const json = await res.json();
+              if (json.shouldSignOut) {
+                await signOut({ redirect: false });
+              }
+              alert('Revoke result: ' + JSON.stringify(json));
+            }}
+          >
+            Revoke access token
+          </button>
         </div>
       )}
     </div>

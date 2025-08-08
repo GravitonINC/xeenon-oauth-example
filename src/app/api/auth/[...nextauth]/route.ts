@@ -5,11 +5,11 @@ import NextAuth, {
 } from 'next-auth';
 import type { JWT } from 'next-auth/jwt';
 
-// These constants are reused in refresh flow
-const XEENON_TOKEN_ENDPOINT = 'http://0.0.0.0:7080/oauth2/token';
-const XEENON_USERINFO_ENDPOINT = 'http://0.0.0.0:7080/users/me';
-const XEENON_CLIENT_ID = '9ae1af77-a1a7-42fe-a5f1-4e497c9dc42c';
-const XEENON_CLIENT_SECRET =
+// These constants are reused across routes
+export const XEENON_TOKEN_ENDPOINT = 'http://0.0.0.0:7080/oauth2/token';
+export const XEENON_USERINFO_ENDPOINT = 'http://0.0.0.0:7080/users/me';
+export const XEENON_CLIENT_ID = '9ae1af77-a1a7-42fe-a5f1-4e497c9dc42c';
+export const XEENON_CLIENT_SECRET =
   '6db97b7747a795e51c80e8ad652b43336add6c965dd9f83167c32e16651b604780f37bfb72b87cc5';
 
 type JWTToken = {
@@ -145,10 +145,14 @@ export const authOptions: NextAuthOptions = {
         accessToken: jwtToken.accessToken,
         accessTokenExpiresAt: jwtToken.accessTokenExpiresAt,
         tokenError: jwtToken.error,
+        // Include refreshToken so server routes (like /api/token/revoke) can access it via getServerSession
+        // This is for demo/testing purposes; avoid exposing refresh tokens to the client in production apps.
+        refreshToken: jwtToken.refreshToken,
       } as typeof session & {
         accessToken?: string;
         accessTokenExpiresAt?: number;
         tokenError?: string;
+        refreshToken?: string;
       };
     },
   },
