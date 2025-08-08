@@ -1,10 +1,6 @@
 import { getServerSession } from 'next-auth';
 import { NextResponse } from 'next/server';
-import {
-  authOptions,
-  XEENON_CLIENT_ID,
-  XEENON_CLIENT_SECRET,
-} from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
 
 export async function POST() {
   const session = (await getServerSession(authOptions)) as
@@ -25,8 +21,8 @@ export async function POST() {
     const params = new URLSearchParams({
       token: session.refreshToken ?? session.accessToken,
       token_type_hint: session.refreshToken ? 'refresh_token' : 'access_token',
-      client_id: XEENON_CLIENT_ID,
-      client_secret: XEENON_CLIENT_SECRET,
+      client_id: process.env.XEENON_CLIENT_ID!,
+      client_secret: process.env.XEENON_CLIENT_SECRET!,
     });
 
     const res = await fetch(process.env.XEENON_REVOKE_TOKEN_ENDPOINT!, {
