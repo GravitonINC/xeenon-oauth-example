@@ -12,7 +12,7 @@ export async function GET() {
     | null;
   // Echo minimal data and make an authenticated upstream call to verify token works
   try {
-    const upstream = await fetch('http://0.0.0.0:7080/users/me', {
+    const upstream = await fetch(process.env.XEENON_USERINFO_ENDPOINT!, {
       headers: {
         Authorization: session?.accessToken
           ? `Bearer ${session.accessToken}`

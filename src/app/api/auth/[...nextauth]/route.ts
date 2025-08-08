@@ -6,11 +6,10 @@ import NextAuth, {
 import type { JWT } from 'next-auth/jwt';
 
 // These constants are reused across routes
-export const XEENON_TOKEN_ENDPOINT = 'http://0.0.0.0:7080/oauth2/token';
-export const XEENON_USERINFO_ENDPOINT = 'http://0.0.0.0:7080/users/me';
-export const XEENON_CLIENT_ID = '9ae1af77-a1a7-42fe-a5f1-4e497c9dc42c';
-export const XEENON_CLIENT_SECRET =
-  '6db97b7747a795e51c80e8ad652b43336add6c965dd9f83167c32e16651b604780f37bfb72b87cc5';
+export const XEENON_TOKEN_ENDPOINT = process.env.XEENON_TOKEN_ENDPOINT!;
+export const XEENON_USERINFO_ENDPOINT = process.env.XEENON_USERINFO_ENDPOINT!;
+export const XEENON_CLIENT_ID = process.env.XEENON_CLIENT_ID!;
+export const XEENON_CLIENT_SECRET = process.env.XEENON_CLIENT_SECRET!;
 
 type JWTToken = {
   name?: string | null;
@@ -86,7 +85,7 @@ export const authOptions: NextAuthOptions = {
       name: 'Xeenon',
       type: 'oauth',
       authorization: {
-        url: 'http://0.0.0.0:7080/oauth2/authorize',
+        url: process.env.XEENON_AUTHORIZE_ENDPOINT!,
         params: {
           scope: 'general chat:read chat:write follow:write reactions:write',
           code_challenge_method: 'S256',

@@ -29,7 +29,7 @@ export async function POST() {
       client_secret: XEENON_CLIENT_SECRET,
     });
 
-    const res = await fetch('http://0.0.0.0:7080/oauth2/token/revoke', {
+    const res = await fetch(process.env.XEENON_REVOKE_TOKEN_ENDPOINT!, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: params,
