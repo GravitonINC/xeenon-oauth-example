@@ -75,8 +75,6 @@ async function refreshAccessToken(token: JWTToken): Promise<JWTToken> {
 }
 
 export const authOptions: NextAuthOptions = {
-  // Surface more logs during local testing
-  debug: true,
   session: { strategy: 'jwt' },
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
